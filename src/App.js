@@ -16,8 +16,13 @@ class App extends Component {
       <div className="App">
         <br />
         <br />
-        <button onClick={() => this.changeName("Welcome to Rezerva")}>
-          Change Name
+        <button onClick={() => this.changeName("Welcome to Rezerva :(")}>
+          Change Name using Anonymous function :(
+        </button>
+        <br />
+        <br />
+        <button onClick={this.changeName.bind(this, "Welcome to Rezerva :)")}>
+          Change Name using Anonymous function :)
         </button>
         <br />
         <br />
