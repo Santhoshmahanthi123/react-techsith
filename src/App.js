@@ -11,6 +11,11 @@ class App extends Component {
       name: newName
     });
   };
+  changeNameFromInput = event => {
+    this.setState({
+      name: event.target.value
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -26,6 +31,7 @@ class App extends Component {
         </button>
         <br />
         <br />
+        <input type="text" onChange={this.changeNameFromInput} />
         <div>{this.state.name}</div>
       </div>
     );
