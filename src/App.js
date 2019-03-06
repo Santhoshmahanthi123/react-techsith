@@ -22,7 +22,7 @@ class App extends Component {
         <br />
         <br />
         <button onClick={() => this.changeName("Welcome to Rezerva :(")}>
-          Change Name using Anonymous function :(
+          Changing Name using Anonymous function :(
         </button>
         <br />
         <br />
