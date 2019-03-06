@@ -6,9 +6,9 @@ class App extends Component {
     name: "Rezerva"
   };
 
-  changeName = () => {
+  changeName = newName => {
     this.setState({
-      name: "Welcome to Rezerva"
+      name: newName
     });
   };
   render() {
@@ -16,7 +16,9 @@ class App extends Component {
       <div className="App">
         <br />
         <br />
-        <button onClick={this.changeName}>Change State </button>
+        <button onClick={() => this.changeName("Welcome to Rezerva")}>
+          Change Name
+        </button>
         <br />
         <br />
         <div>{this.state.name}</div>
