@@ -31,7 +31,11 @@ class App extends Component {
         </button>
         <br />
         <br />
-        <input type="text" onChange={this.changeNameFromInput} />
+        <input
+          type="text"
+          onChange={this.changeNameFromInput}
+          value={this.state.name}
+        />
         <div>{this.state.name}</div>
       </div>
     );
