@@ -1,9 +1,14 @@
 import React from "react";
 const User = props => {
-  return (
-    <div>
-      Name: {props.children} | Age: {props.age}
-    </div>
-  );
+  let age = props.age ? props.age : "NA";
+  if (props.children) {
+    return (
+      <div>
+        Name: {props.children} | Age: {age}
+      </div>
+    );
+  } else {
+    return <div> Invalid Entry.</div>;
+  }
 };
 export default User;

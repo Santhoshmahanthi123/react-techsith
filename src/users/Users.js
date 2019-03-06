@@ -6,7 +6,7 @@ class Users extends Component {
       <div>
         <h1>{this.props.title}</h1>
         <h3>These are the users of our application</h3>
-        <User age="20">Ajith</User>
+        <User />
         <User age="21">Sujith</User>
         <User age="22">Rajesh</User>
       </div>
