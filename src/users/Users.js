@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import User from "./User";
+const Console = console;
 class Users extends Component {
   state = {
     users: [
@@ -9,6 +10,9 @@ class Users extends Component {
     ],
     title: "Welcome to Rezerva application"
   };
+  makeMeYounger = () => {
+    Console.log("Button clicked");
+  };
   render() {
     return (
       <div>
@@ -17,6 +21,10 @@ class Users extends Component {
         <User age={this.state.users[0].age}>{this.state.users[0].name}</User>
         <User age={this.state.users[1].age}>{this.state.users[1].name}</User>
         <User age={this.state.users[2].age}>{this.state.users[2].name}</User>
+        <br />
+        <button onClick={this.makeMeYounger}>
+          Make users 10 years younger
+        </button>
       </div>
     );
   }
