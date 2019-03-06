@@ -11,7 +11,13 @@ class Users extends Component {
     title: "Welcome to Rezerva application"
   };
   makeMeYounger = () => {
-    Console.log("Button clicked");
+    this.setState({
+      users: [
+        { name: "jhon", age: 10 },
+        { name: "jill", age: 20 },
+        { name: "peter", age: 30 }
+      ]
+    });
   };
   render() {
     return (
