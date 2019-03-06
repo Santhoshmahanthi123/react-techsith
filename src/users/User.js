@@ -4,7 +4,7 @@ const User = props => {
   if (props.children) {
     return (
       <div>
-        Name: {props.children} | Age: {age}
+        name: {props.children} | age: {age}
       </div>
     );
   } else {
