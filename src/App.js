@@ -1,11 +1,25 @@
 import React, { Component } from "react";
 import "./App.css";
-import Users from "./users/Users";
+
 class App extends Component {
+  state = {
+    name: "Rezerva"
+  };
+
+  changeName = () => {
+    this.setState({
+      name: "Welcome to Rezerva"
+    });
+  };
   render() {
     return (
       <div className="App">
-        <Users title="Welcome to Rezerva" />
+        <br />
+        <br />
+        <button onClick={this.changeName}>Change State </button>
+        <br />
+        <br />
+        <div>{this.state.name}</div>
       </div>
     );
   }
