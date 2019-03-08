@@ -18,11 +18,20 @@ class App extends Component {
     }
     console.log("component will mount");
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("should component update");
+    return true;
+  }
   changeState = () => {
     this.setState({ name: "peter" });
   };
-
+  // children get rendered here
+  componentDidMount() {
+    console.log("component did mount");
+  }
+  componentWillReceiveProps() {
+    console.log("component will receive props");
+  }
   render() {
     console.log("render");
     return (
@@ -32,10 +41,6 @@ class App extends Component {
         <button onClick={this.changeState.bind(this)}>Change State</button>
       </div>
     );
-  }
-  // children get rendered here
-  componentDidMount() {
-    console.log("component did mount");
   }
 }
 
