@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 const Temp = () => {
-  return (
-    <div>
-      <div>Hi......</div>
-      <div>Hello...</div>
-    </div>
-  );
+  return [<div>Hi......</div>, <div>Hello...</div>];
 };
 class App extends Component {
   render() {
