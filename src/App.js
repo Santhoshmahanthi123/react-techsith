@@ -1,42 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
+import Child from "./components/parentToChild/child";
 
 class App extends Component {
   state = {
-    name: "Rezerva"
+    title: "placeholder title"
   };
 
-  changeName = newName => {
-    this.setState({
-      name: newName
-    });
+  changeTheWorld = newTitle => {
+    this.setState({ title: newTitle });
   };
-  changeNameFromInput = event => {
-    this.setState({
-      name: event.target.value
-    });
-  };
+
   render() {
     return (
       <div className="App">
-        <br />
-        <br />
-        <button onClick={() => this.changeName("Welcome to Rezerva :(")}>
-          Changing Name using Anonymous function :(
-        </button>
-        <br />
-        <br />
-        <button onClick={this.changeName.bind(this, "Welcome to Rezerva :)")}>
-          Change Name using Anonymous function :)
-        </button>
-        <br />
-        <br />
-        <input
-          type="text"
-          onChange={this.changeNameFromInput}
-          value={this.state.name}
+        <Child
+          doSomeThing={this.changeTheWorld.bind(this, "new world")}
+          title={this.state.title}
         />
-        <div>{this.state.name}</div>
       </div>
     );
   }
