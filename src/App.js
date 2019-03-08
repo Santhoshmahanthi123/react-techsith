@@ -1,61 +1,35 @@
 import React, { Component } from "react";
 import "./App.css";
-import Child from "./child";
-
+const Temp = props => {
+  console.log("render Temp");
+  return <div>{props.val}</div>;
+};
 class App extends Component {
-  // constructor runs initially
-  constructor() {
-    super();
-    this.state = {
-      name: "santhosh"
-    };
-    // only runs one time when it initially renders
-    console.log("constructor");
-  }
-  componentWillMount() {
-    if (window.innerWidth < 500) {
-      this.setState({ innerWidth: window.innerWidth });
-    }
-    console.log("component will mount");
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("should component update");
-    return true;
-  }
-  changeState = () => {
-    this.setState({ name: "peter" });
+  state = {
+    val: 1
   };
-  // children get rendered here
+
+  // for every 2 seconds component updated that is it sets its state for ever 2 seconds
   componentDidMount() {
-    console.log("component did mount");
-  }
-  componentWillReceiveProps() {
-    console.log("component will receive props");
-  }
-  componentWillUpdate() {
-    console.log("component will update");
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log("component did update");
-  }
-  componentWillUnmount() {
-    console.log("component will unmount");
-  }
-  unMountChild() {
-    this.setState({ name: "Rajesh" });
+    setInterval(() => {
+      this.setState(() => {
+        return { val: 1 };
+      });
+    }, 2000);
   }
 
+  // to fix above problem we have one method called should component update
+
+  shouldComponentUpdate(nextProp, nextState) {
+    console.log("next state", nextState);
+    console.log("current state", this.state);
+    return this.state.val === nextState.val ? false : true;
+  }
   render() {
-    console.log("render");
-    if (this.state.name === "Rajesh") {
-      return <div />;
-    }
+    console.log("render app");
     return (
       <div className="App">
-        name : {this.state.name} |{this.state.innerWidth}
-        <Child name={this.state.name} />
-        <button onClick={this.changeState.bind(this)}>Change State</button>
-        <button onClick={this.unMountChild.bind(this)}>Child Unmount</button>
+        <Temp val={this.state.val} />
       </div>
     );
   }
