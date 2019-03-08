@@ -1,24 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
 import User from "./components/user";
+import UniqueId from "react-html-id";
 
 class App extends Component {
-  state = {
-    users: [
-      {
-        name: "santhosh",
-        age: 22
-      },
-      {
-        name: "rajesh",
-        age: 23
-      },
-      {
-        name: "tinsy",
-        age: 24
-      }
-    ]
-  };
+  constructor() {
+    super();
+    UniqueId.enableUniqueIds(this);
+    this.state = {
+      users: [
+        { id: this.nextUniqueId(), name: "santhosh", age: 22 },
+        {
+          id: this.nextUniqueId(),
+          name: "rajesh",
+          age: 23
+        },
+        {
+          id: this.nextUniqueId(),
+          name: "tinsy",
+          age: 24
+        }
+      ]
+    };
+    console.log(this.state);
+  }
 
   // do delete a userwe have to copy those users in the below method
   deleteUser = (index, e) => {
@@ -35,6 +40,7 @@ class App extends Component {
             return (
               <User
                 age={user.age}
+                key={user.id}
                 deleteEvent={this.deleteUser.bind(this, index)}
               >
                 {user.name}
