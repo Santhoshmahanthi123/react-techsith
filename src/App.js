@@ -1,24 +1,47 @@
 import React, { Component } from "react";
 import "./App.css";
-import Parent from "./components/parentToChild/parent";
+import User from "./components/user";
 
 class App extends Component {
   state = {
-    title: "placeholder title"
+    users: [
+      {
+        name: "santhosh",
+        age: 22
+      },
+      {
+        name: "rajesh",
+        age: 23
+      },
+      {
+        name: "tinsy",
+        age: 24
+      }
+    ]
   };
 
-  changeTheWorld = newTitle => {
-    this.setState({ title: newTitle });
+  // do delete a userwe have to copy those users in the below method
+  deleteUser = (index, e) => {
+    const users = Object.assign([], this.state.users);
+    users.splice(index, 1);
+    // replacing users inside the above state
+    this.setState({ users: users });
   };
-
   render() {
     return (
       <div className="App">
-        <Parent
-          changeTheWorldEvent={this.changeTheWorld.bind(this, "new world")}
-          keepTheWorldSameEvent={this.changeTheWorld.bind(this, "same world")}
-          title={this.state.title}
-        />
+        <ul>
+          {this.state.users.map((user, index) => {
+            return (
+              <User
+                age={user.age}
+                deleteEvent={this.deleteUser.bind(this, index)}
+              >
+                {user.name}
+              </User>
+            );
+          })}
+        </ul>
       </div>
     );
   }
