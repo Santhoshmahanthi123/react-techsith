@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Child from "./components/parentToChild/child";
-
+import Parent from "./components/parentToChild/parent";
 class App extends Component {
   state = {
     title: "placeholder title"
@@ -14,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Child
-          doSomeThing={this.changeTheWorld.bind(this, "new world")}
+        <Parent
+          doWhatEver={this.changeTheWorld.bind(this, "new world")}
           title={this.state.title}
         />
       </div>
