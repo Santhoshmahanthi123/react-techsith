@@ -19,13 +19,17 @@ class App extends Component {
     console.log("component will mount");
   }
 
+  changeState = () => {
+    this.setState({ name: "peter" });
+  };
+
   render() {
     console.log("render");
     return (
       <div className="App">
+        name : {this.state.name} |{this.state.innerWidth}
         <Child name={this.state.name} />
-        {this.state.name}
-        {this.state.innerWidth}
+        <button onClick={this.changeState.bind(this)}>Change State</button>
       </div>
     );
   }

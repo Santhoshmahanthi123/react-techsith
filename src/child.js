@@ -17,7 +17,7 @@ class Child extends Component {
   }
   render() {
     console.log("child render");
-    return <div className="App">name : {this.props.name}</div>;
+    return <div className="App">Childname : {this.props.name}</div>;
   }
   // children get rendered here
 }
