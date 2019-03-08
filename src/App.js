@@ -1,19 +1,23 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./App.css";
-const Temp = () => {
-  return (
-    <Fragment>
-      <div key="1">Hi......</div> <div key="2">Hello...</div>
-    </Fragment>
-  );
-};
+
 class App extends Component {
+  state = {
+    name: "raj"
+  };
+
+  // constructor runs initially
+  constructor() {
+    super();
+    this.state = {
+      name: "santhosh"
+    };
+
+    // only runs one time when it initially renders
+    console.log("Initial render in constructor main");
+  }
   render() {
-    return (
-      <div className="App">
-        <Temp />
-      </div>
-    );
+    return <div className="App">{this.state.name}</div>;
   }
 }
 
