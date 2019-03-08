@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     setInterval(() => {
       this.setState(() => {
-        return { val: 1 };
+        return { val: Math.random() };
       });
     }, 2000);
   }
