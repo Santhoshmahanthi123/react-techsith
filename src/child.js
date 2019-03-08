@@ -22,6 +22,17 @@ class Child extends Component {
     console.log("child should component update");
     return true;
   }
+  componentWillUpdate() {
+    console.log("child component will update");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(`child component did update`, prevProps);
+    console.log(`child component did update`, prevState);
+    console.log(`child component did update`);
+  }
+  componentWillUnmount() {
+    console.log("child component will unmount");
+  }
   render() {
     console.log("child render");
     return <div className="App">Childname : {this.props.name}</div>;
