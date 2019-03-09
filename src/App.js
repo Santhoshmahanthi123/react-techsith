@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
 import Route from "react-router-dom/Route";
 
-const User = ({ match }) => {
-  return <h1>Welcome {match.params.username} to user page!</h1>;
+const User = params => {
+  return <h1>Welcome {params.username} to user page!</h1>;
 };
 class App extends Component {
+  state = {
+    loggedIn: false
+  };
+  loginHanle = () => {
+    this.setState({ loggedIn: true });
+  };
   render() {
-    console.log("render app");
     return (
       <Router>
         <div className="App">
@@ -38,6 +43,11 @@ class App extends Component {
               </NavLink>
             </li>
           </ul>
+          <input
+            type="button"
+            value="Log In"
+            onClick={this.loginHanle.bind(this)}
+          />
           <Route
             path="/"
             exact
@@ -45,6 +55,7 @@ class App extends Component {
               return <h1>Welcome to home page!</h1>;
             }}
           />
+
           <Route
             path="/about"
             exact
@@ -53,7 +64,19 @@ class App extends Component {
               return <h1>Welcome to About page!</h1>;
             }}
           />
-          <Route path="/user/:username" exact strict component={User} />
+          {/* to check whether the user is logged in or not */}
+          <Route
+            path="/user/:username"
+            exact
+            strict
+            render={({ match }) =>
+              this.state.loggedIn ? (
+                <User username={match.params.username} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
         </div>
       </Router>
     );
