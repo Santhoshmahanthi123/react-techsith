@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, NavLink, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Redirect,
+  Prompt
+} from "react-router-dom";
 import Route from "react-router-dom/Route";
 
 const User = params => {
@@ -46,6 +51,15 @@ class App extends Component {
               </NavLink>
             </li>
           </ul>
+          <Prompt
+            when={!this.state.loggedIn}
+            message={location => {
+              // to check the route hit by the user user path
+              return location.pathname.startsWith("/user")
+                ? "Are you sure?"
+                : true;
+            }}
+          />
           <input
             type="button"
             // it checks logged in or not and places logout if login and else login
