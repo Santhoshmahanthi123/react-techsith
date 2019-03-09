@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import Route from "react-router-dom/Route";
 
 const User = ({ match }) => {
@@ -12,6 +12,32 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <ul>
+            <li>
+              <NavLink to="/" exact activeStyle={{ color: "green" }}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" exact activeStyle={{ color: "black" }}>
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/user/santhosh"
+                exact
+                activeStyle={{ color: "blue" }}
+              >
+                User Santhosh
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/user/peter" exact activeStyle={{ color: "red" }}>
+                User Peter
+              </NavLink>
+            </li>
+          </ul>
           <Route
             path="/"
             exact
@@ -20,7 +46,7 @@ class App extends Component {
             }}
           />
           <Route
-            path="/about/"
+            path="/about"
             exact
             strict
             render={() => {
