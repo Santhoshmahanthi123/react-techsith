@@ -11,7 +11,10 @@ class App extends Component {
     loggedIn: false
   };
   loginHanle = () => {
-    this.setState({ loggedIn: true });
+    this.setState(prevState => ({
+      // setting toogle use to previous state
+      loggedIn: !prevState.loggedIn
+    }));
   };
   render() {
     return (
@@ -45,7 +48,8 @@ class App extends Component {
           </ul>
           <input
             type="button"
-            value="Log In"
+            // it checks logged in or not and places logout if login and else login
+            value={this.state.loggedIn ? " log out" : "log in"}
             onClick={this.loginHanle.bind(this)}
           />
           <Route
