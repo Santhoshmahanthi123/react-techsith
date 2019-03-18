@@ -1,15 +1,33 @@
 import React, { Component } from "react";
 import "./App.css";
 
-class App extends Component {
-  onClick = () => {
-    alert(
-      `yey: ${this.firstName.value} |  ${this.firstName.value} submitted :)`
-    );
+const MyInput = props => {
+  return <input type="text" ref={props.inputRef} />;
+};
+
+const FuncCustomComp = props => {
+  let textRef = null;
+
+  const handleClick = () => {
+    alert(`yey, input val is ${textRef.value}`);
   };
-  onKeyUp = (target, e) => {
-    if (e.keyCode === 13) {
-      switch (target) {
+  return (
+    <div style={styles.myInput}>
+      <MyInput
+        inputRef={input => {
+          textRef = input;
+        }}
+      />
+      <input type="button" value="show input" onClick={handleClick} />
+    </div>
+  );
+};
+
+class App extends Component {
+  onKeyUp = (passed, e) => {
+    if (e.keyCode == 13) {
+      console.log(passed);
+      switch (passed) {
         case "firstName":
           this.lastName.focus();
           break;
@@ -20,57 +38,68 @@ class App extends Component {
           this.submit.focus();
           break;
         default:
-          this.firstName.focus();
+          this.submit.focus();
       }
     }
+  };
+  onSubmit = () => {
+    alert(`yey submited! ${this.firstName.value}, ${this.lastName.value} `);
   };
   render() {
     return (
       <div className="App">
         <div>
-          <span>First Name:</span>
+          <FuncCustomComp />
+        </div>
+
+        <div>
+          <span>First Name: </span>
           <input
             type="text"
+            onKeyUp={this.onKeyUp.bind(this, "firstName")}
             ref={input => {
               this.firstName = input;
             }}
-            onKeyUp={this.onKeyUp.bind(this, "firstName")}
           />
         </div>
         <div>
-          <span>Last Name:</span>
+          <span>Last Name: </span>
           <input
             type="text"
+            onKeyUp={this.onKeyUp.bind(this, "lastName")}
             ref={input => {
               this.lastName = input;
             }}
-            onKeyUp={this.onKeyUp.bind(this, "lastName")}
           />
         </div>
         <div>
-          <span>Age:</span>
+          <span>Age: </span>
           <input
             type="text"
+            onKeyUp={this.onKeyUp.bind(this, "age")}
             ref={input => {
               this.age = input;
             }}
-            onKeyUp={this.onKeyUp.bind(this, "age")}
           />
         </div>
         <div>
           <input
             type="submit"
-            value="submit"
-            onClick={this.onClick}
+            value="Submit"
+            onClick={this.onSubmit}
             ref={input => {
               this.submit = input;
             }}
-            onKeyUp={this.onKeyUp.bind(this, "submit")}
           />
         </div>
       </div>
     );
   }
 }
+const styles = {
+  myInput: {
+    margin: "20px"
+  }
+};
 
 export default App;
