@@ -3,7 +3,26 @@ import "./App.css";
 
 class App extends Component {
   onClick = () => {
-    console.log(this.firstName.value);
+    alert(
+      `yey: ${this.firstName.value} |  ${this.firstName.value} submitted :)`
+    );
+  };
+  onKeyUp = (target, e) => {
+    if (e.keyCode === 13) {
+      switch (target) {
+        case "firstName":
+          this.lastName.focus();
+          break;
+        case "lastName":
+          this.age.focus();
+          break;
+        case "age":
+          this.submit.focus();
+          break;
+        default:
+          this.firstName.focus();
+      }
+    }
   };
   render() {
     return (
@@ -15,18 +34,39 @@ class App extends Component {
             ref={input => {
               this.firstName = input;
             }}
+            onKeyUp={this.onKeyUp.bind(this, "firstName")}
           />
         </div>
         <div>
           <span>Last Name:</span>
-          <input type="text" />
+          <input
+            type="text"
+            ref={input => {
+              this.lastName = input;
+            }}
+            onKeyUp={this.onKeyUp.bind(this, "lastName")}
+          />
         </div>
         <div>
           <span>Age:</span>
-          <input type="text" />
+          <input
+            type="text"
+            ref={input => {
+              this.age = input;
+            }}
+            onKeyUp={this.onKeyUp.bind(this, "age")}
+          />
         </div>
         <div>
-          <input type="submit" value="submit" onClick={this.onClick} />
+          <input
+            type="submit"
+            value="submit"
+            onClick={this.onClick}
+            ref={input => {
+              this.submit = input;
+            }}
+            onKeyUp={this.onKeyUp.bind(this, "submit")}
+          />
         </div>
       </div>
     );
