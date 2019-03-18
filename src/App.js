@@ -1,102 +1,34 @@
 import React, { Component } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Redirect,
-  Prompt
-} from "react-router-dom";
-import Route from "react-router-dom/Route";
 
-const User = params => {
-  return <h1>Welcome {params.username} to user page!</h1>;
-};
 class App extends Component {
-  state = {
-    loggedIn: false
-  };
-  loginHanle = () => {
-    this.setState(prevState => ({
-      // setting toogle use to previous state
-      loggedIn: !prevState.loggedIn
-    }));
+  onClick = () => {
+    console.log(this.firstName.value);
   };
   render() {
     return (
-      <Router>
-        <div className="App">
-          <ul>
-            <li>
-              <NavLink to="/" exact activeStyle={{ color: "green" }}>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" exact activeStyle={{ color: "black" }}>
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/user/santhosh"
-                exact
-                activeStyle={{ color: "blue" }}
-              >
-                User Santhosh
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/user/peter" exact activeStyle={{ color: "red" }}>
-                User Peter
-              </NavLink>
-            </li>
-          </ul>
-          <Prompt
-            when={!this.state.loggedIn}
-            message={location => {
-              // to check the route hit by the user user path
-              return location.pathname.startsWith("/user")
-                ? "Are you sure?"
-                : true;
-            }}
-          />
+      <div className="App">
+        <div>
+          <span>First Name:</span>
           <input
-            type="button"
-            // it checks logged in or not and places logout if login and else login
-            value={this.state.loggedIn ? " log out" : "log in"}
-            onClick={this.loginHanle.bind(this)}
-          />
-          <Route
-            path="/"
-            exact
-            render={() => {
-              return <h1>Welcome to home page!</h1>;
+            type="text"
+            ref={input => {
+              this.firstName = input;
             }}
-          />
-
-          <Route
-            path="/about"
-            exact
-            strict
-            render={() => {
-              return <h1>Welcome to About page!</h1>;
-            }}
-          />
-          {/* to check whether the user is logged in or not */}
-          <Route
-            path="/user/:username"
-            exact
-            strict
-            render={({ match }) =>
-              this.state.loggedIn ? (
-                <User username={match.params.username} />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
           />
         </div>
-      </Router>
+        <div>
+          <span>Last Name:</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Age:</span>
+          <input type="text" />
+        </div>
+        <div>
+          <input type="submit" value="submit" onClick={this.onClick} />
+        </div>
+      </div>
     );
   }
 }
